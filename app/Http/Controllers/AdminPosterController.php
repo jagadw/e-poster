@@ -1,0 +1,90 @@
+<?php
+namespace App\Http\Controllers;
+
+use App\Models\Poster;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+class AdminPosterController extends Controller
+{
+    public function index()
+    {
+        $posters = Poster::latest()->paginate(10);
+        return view('AdminPoster.index', compact('posters'));
+    }
+
+    public function create()
+    {
+        return view('AdminPoster.create');
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+            'affiliate' => 'nullable',
+            'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+
+        $last = Poster::orderBy('code', 'desc')->first();
+        $nextNumber = $last ? intval(substr($last->code, 2)) + 1 : 1;
+        $code = 'A-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+
+        $path = $request->file('file')->store('posters', 'public');
+
+        Poster::create([
+            'code' => $code,
+            'name' => $request->name,
+            'title' => $request->title,
+            'affiliate' => $request->affiliate,
+            'file' => $path,
+        ]);
+
+        return redirect()->route('AdminPoster.index')->with('success', 'Poster created successfully.');
+    }
+
+    public function show(Poster $poster)
+    {
+        return view('AdminPoster.show', compact('poster'));
+    }
+
+    public function edit(Poster $AdminPoster)
+    {
+        return view('AdminPoster.edit', ['poster' => $AdminPoster]);
+    }
+    
+    public function update(Request $request, Poster $AdminPoster)
+    {
+        $request->validate([
+            'name' => 'required',
+            'title' => 'required',
+            'affiliate' => 'nullable',
+            'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+    
+        $data = $request->only('name', 'title', 'affiliate');
+    
+        if ($request->hasFile('file')) {
+            if ($AdminPoster->file) {
+                Storage::disk('public')->delete($AdminPoster->file);
+            }
+            $data['file'] = $request->file('file')->store('posters', 'public');
+        }
+    
+        $AdminPoster->update($data);
+    
+        return redirect()->route('AdminPoster.index')->with('success', 'Poster updated successfully.');
+    }
+    
+    public function destroy(Poster $AdminPoster)
+    {
+        if ($AdminPoster->file) {
+            Storage::disk('public')->delete($AdminPoster->file);
+        }
+
+        $AdminPoster->delete();
+
+        return redirect()->route('AdminPoster.index')->with('success', 'Poster deleted.');
+    }
+}
