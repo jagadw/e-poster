@@ -11,4 +11,5 @@ class Poster extends Model
     protected $keyType = 'string';
 
     protected $fillable = ['code', 'name', 'title', 'affiliate', 'file'];
+
 }
