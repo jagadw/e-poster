@@ -1,12 +1,11 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\adminPosterController;
+use App\Http\Controllers\AdminPosterController;
+use App\Http\Controllers\PosterController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('poster.index')->name('home');
-});
+Route::get('/', [PosterController::class, 'index'])->name('home');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -16,7 +15,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('adminPoster', adminPosterController::class);
+    Route::resource('AdminPoster', AdminPosterController::class);
 });
 
 require __DIR__.'/auth.php';
