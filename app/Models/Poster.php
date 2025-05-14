@@ -6,11 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Poster extends Model
 {
-    //
     protected $primaryKey = 'code';
     public $incrementing = false;
     protected $keyType = 'string';
 
-    protected $fillable = ['kode_poster', 'nama', 'judul', 'affiliate', 'file'];
-
+    protected $fillable = ['code', 'name', 'title', 'affiliate', 'file'];
 }
