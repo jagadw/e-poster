@@ -10,9 +10,39 @@ class PosterController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $Posters = Poster::orderBy('code', 'desc')->paginate(10);
+        
+        $code = $request->input('code');
+        $author = $request->input('author');
+        $file = $request->input('file_type');
+
+        if ($code) {
+            $Posters = $Posters->filter(fn($p) =>
+                str_contains(strtolower($p['code']), strtolower($code))
+            );
+        }
+    
+        if ($author) {
+            $Posters = $Posters->filter(fn($p) =>
+                str_contains(strtolower($p['name']), strtolower($author))
+            );
+        }
+
+        if ($file) {
+            $Posters = $Posters->filter(fn($p) =>
+                str_contains(strtolower($p['file']), strtolower($file))
+            );
+        }
+
+        return view('Poster.index', compact('Posters', 'code', 'author', 'file'));
+    }
+    
+    public function view($code)
+    {
+        return view('Poster.index', compact('Posters'));
     }
 
     /**
@@ -28,28 +58,7 @@ class PosterController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'title' => 'required',
-            'affiliate' => 'nullable',
-            'file' => 'required|mimes:pdf|max:2048',
-        ]);
-    
-        $path = $request->file('file')->store('posters', 'public');
-    
-        $last = Poster::orderBy('code', 'desc')->first();
-        $next = $last ? (int) substr($last->code, 2) + 1 : 1;
-        $code = 'A-' . str_pad($next, 4, '0', STR_PAD_LEFT);
-    
-        Poster::create([
-            'code' => $code,
-            'name' => $request->name,
-            'title' => $request->title,
-            'affiliate' => $request->affiliate,
-            'file' => $path,
-        ]);
-    
-        return redirect()->route('poster.index')->with('success', 'Poster uploaded.');
+        //
     }
     
     /**
