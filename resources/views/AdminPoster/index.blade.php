@@ -4,13 +4,13 @@
     </x-slot>
 
     <div class="py-4 px-6">
-        <a href="{{ route('AdminPoster.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Add Poster</a>
+        <a href="{{ route('AdminPoster.create') }}" class="px-3 py-2 bg-blue-600 text-white rounded">Add Poster</a>
 
         {{-- @if(session('success'))
             <div class="mt-4 text-green-600">{{ session('success') }}</div>
         @endif --}}
 
-        <table class="w-full mt-4 border">
+        <table class="w-full mt-4 border overflow-x-auto">
             <thead>
                 <tr class="bg-gray-200">
                     <th class="border px-2 py-1">Code</th>
@@ -29,11 +29,11 @@
                         <td class="border px-2 py-1">{{ $poster->title }}</td>
                         <td class="border px-2 py-1">{{ $poster->affiliate }}</td>
                         <td class="border px-2 py-1">
-                            <a href="{{ asset('storage/' . $poster->file) }}" class="text-blue-500" target="_blank">View Poster</a>
+                            <a href="{{ route('ViewPoster', $poster) }}" class="text-blue-500" target="_blank">View</a>
                         </td>
-                        <td class="border px-2 py-1">
-                            <a href="{{ route('AdminPoster.edit', $poster) }}" class="text-indigo-500">Edit</a>
+                        <td class="border px-2 py-1 text-center">
                             <form action="{{ route('AdminPoster.destroy', $poster) }}" method="POST" class="inline">
+                                <a href="{{ route('AdminPoster.edit', $poster) }}" class="text-indigo-500">Edit</a>
                                 @csrf @method('DELETE')
                                 <button type="submit" onclick="return confirm('Are you sure?')" class="text-red-500 ml-2">Delete</button>
                             </form>
