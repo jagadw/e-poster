@@ -3,18 +3,18 @@
     @section('content')
 
     <div class="px-6 py-4">
-        <a href="{{ route('login') }}" class="bg-blue-500 text-white px-4 py-2 rounded">Admin Only</a>
+        <a href="{{ route('login') }}" class="px-3 py-2 bg-blue-600 text-white rounded">Admin Only</a>
     </div>
 
         <div class="py-4 px-6">
         <form id="formSearch" method="GET" action="{{ route('home') }}"
         class="mb-4 space-y-2 md:space-y-0 md:flex md:space-x-2">
 
-        <input type="text" class="filter" name="code" value="{{ request('code') }}"
+        <input type="text" name="code" value="{{ request('code') }}"
             placeholder="Search by Code"
             class="input border px-4 py-2 rounded w-full md:w-1/3">
 
-        <input type="text" class="filter" name="author" value="{{ request('author') }}"
+        <input type="text" name="author" value="{{ request('author') }}"
             placeholder="Search by Author"
             class="input border px-4 py-2 rounded w-full md:w-1/3">
 
@@ -50,7 +50,7 @@
                             <td class="border px-2 py-1">{{ $poster->title }}</td>
                             <td class="border px-2 py-1">{{ $poster->affiliate }}</td>
                             <td class="border px-2 py-1">
-                                <a href="{{ asset('storage/' . $poster->file) }}" class="text-blue-500" target="_blank">View Poster</a>
+                                <a href="{{ route('ViewPoster', $poster) }}" class="text-blue-500" target="_blank">View</a>
                             </td>
                         </tr>
                     @endforeach
