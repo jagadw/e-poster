@@ -29,7 +29,8 @@ class AdminPosterController extends Controller
 
         $last = Poster::orderBy('code', 'desc')->first();
         $nextNumber = $last ? intval(substr($last->code, 2)) + 1 : 1;
-        $code = 'A-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
+        $category = $request->category;
+        $code = $category . '-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
 
         $path = $request->file('file')->store('posters', 'public');
 
