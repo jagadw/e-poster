@@ -7,6 +7,13 @@
         <form action="{{ route('AdminPoster.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
             <div>
+                <label>Category</label>
+                <select name="category" class="w-full border p-2" required>
+                    <option value="A">Alam</option>
+                    <option value="S">Sosial</option>
+                </select>
+            </div>
+            <div>
                 <label>Name</label>
                 <input name="name" class="w-full border p-2" required>
             </div>

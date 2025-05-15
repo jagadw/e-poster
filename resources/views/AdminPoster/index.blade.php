@@ -29,7 +29,7 @@
                         <td class="border px-2 py-1">{{ $poster->title }}</td>
                         <td class="border px-2 py-1">{{ $poster->affiliate }}</td>
                         <td class="border px-2 py-1">
-                            <a href="{{ route('ViewPoster', $poster) }}" class="text-blue-500" target="_blank">View</a>
+                            <a href="{{ route('ViewPoster', $poster) }}" class="text-blue-500">View</a>
                         </td>
                         <td class="border px-2 py-1 text-center">
                             <form action="{{ route('AdminPoster.destroy', $poster) }}" method="POST" class="inline">
