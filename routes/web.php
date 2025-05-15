@@ -6,6 +6,7 @@ use App\Http\Controllers\PosterController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PosterController::class, 'index'])->name('home');
+Route::get('/Poster/view/{poster}', [PosterController::class, 'view'])->name('ViewPoster');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
