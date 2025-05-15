@@ -6,9 +6,14 @@
     <title>e-Poster</title>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+    <style>
+      .input {
+        padding: 10px;
+        font-size: 16px;
+        width: 300px;
+      }
+    </style>
 </head>
-<script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
 
 <body class="bg-gray-100 p-4">
     <div class="container mx-auto">

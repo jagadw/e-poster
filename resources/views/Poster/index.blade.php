@@ -10,11 +10,11 @@
         <form id="formSearch" method="GET" action="{{ route('home') }}"
         class="mb-4 space-y-2 md:space-y-0 md:flex md:space-x-2">
 
-        <input type="text" name="code" value="{{ request('code') }}"
+        <input type="text" id="input1" name="code" value="{{ request('code') }}"
             placeholder="Search by Code"
             class="input border px-4 py-2 rounded w-full md:w-1/3">
 
-        <input type="text" name="author" value="{{ request('author') }}"
+        <input type="text" id="input2" name="author" value="{{ request('author') }}"
             placeholder="Search by Author"
             class="input border px-4 py-2 rounded w-full md:w-1/3">
 
@@ -31,6 +31,10 @@
             SHOW ALL POSTERS
         </a>
         </form>
+
+        <div id="keyboard-container" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; background: #fff; box-shadow: 0 -4px 10px rgba(0,0,0,0.2); padding: 10px;">
+            <div class="simple-keyboard"></div>
+          </div>
 
             <table class="w-full mt-4 border">
                 <thead>
@@ -57,4 +61,43 @@
                 </tbody>
             </table>
 
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+            <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+        
+            <script>
+                const Keyboard = window.SimpleKeyboard.default;
+              
+                let currentInput = null;
+              
+                const keyboard = new Keyboard({
+                  onChange: input => {
+                    if (currentInput) {
+                      currentInput.value = input;
+                    }
+                  },
+                  onKeyPress: button => {
+                    console.log("Key pressed:", button);
+                  }
+                });
+              
+                const keyboardContainer = document.getElementById("keyboard-container");
+              
+                // Input fields
+                const inputs = document.querySelectorAll(".input");
+              
+                inputs.forEach(input => {
+                  input.addEventListener("click", () => {
+                    currentInput = input;
+                    keyboard.setInput(input.value || "");
+                    keyboardContainer.style.display = "block";
+                  });
+                });
+              
+                // Hide keyboard on outside click
+                document.addEventListener("click", function (e) {
+                  if (!keyboardContainer.contains(e.target) && !Array.from(inputs).includes(e.target)) {
+                    keyboardContainer.style.display = "none";
+                  }
+                });
+              </script>
     @endsection
