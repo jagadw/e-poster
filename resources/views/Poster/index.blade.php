@@ -54,12 +54,13 @@
                             <td class="border px-2 py-1">{{ $poster->title }}</td>
                             <td class="border px-2 py-1">{{ $poster->affiliate }}</td>
                             <td class="border px-2 py-1">
-                                <a href="{{ route('ViewPoster', $poster) }}" class="text-blue-500" target="_blank">View</a>
+                                <a href="{{ route('ViewPoster', $poster) }}" class="text-blue-500">View</a>
                             </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
+        </div>
 
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
             <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
