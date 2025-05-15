@@ -40,11 +40,11 @@ class PosterController extends Controller
         return view('Poster.index', compact('Posters', 'code', 'author', 'file'));
     }
     
-    public function view($code)
+    public function view(Poster $poster)
     {
-        return view('Poster.index', compact('Posters'));
+        return view('Poster.view', compact('poster'));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
