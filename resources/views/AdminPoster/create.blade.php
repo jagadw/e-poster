@@ -26,7 +26,7 @@
                 <input name="affiliate" class="w-full border p-2">
             </div>
             <div>
-                <label>File</label>
+                <label>File {{'(Max 10 MB)'}}</label>
                 <input type="file" name="file" class="w-full border p-2" required>
             </div>
             <button class="bg-blue-600 text-white px-4 py-2 rounded">Save</button>
