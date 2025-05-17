@@ -61,7 +61,7 @@ class AdminPosterController extends Controller
             'name' => 'required',
             'title' => 'required',
             'affiliate' => 'nullable',
-            'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf|max:10240',
+            'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf,docx,ppt|max:10240',
         ]);
     
         $data = $request->only('name', 'title', 'affiliate');
