@@ -25,6 +25,7 @@
                 <input type="file" name="file" class="w-full border p-2">
             </div>
             <button class="bg-green-600 text-white px-4 py-2 rounded">Update</button>
+            <a href="{{ route('AdminPoster.index') }}" class="bg-[#6f7575] text-white px-4 py-3 rounded">Back</a>
         </form>        
     </div>
 </x-app-layout>
