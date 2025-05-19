@@ -7,11 +7,11 @@
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     <style>
-      .input {
+      /* .input {
         padding: 10px;
         font-size: 16px;
         width: 300px;
-      }
+      } */
     </style>
 </head>
 
