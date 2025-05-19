@@ -5,8 +5,13 @@ use App\Http\Controllers\AdminPosterController;
 use App\Http\Controllers\PosterController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [PosterController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return view('welcome');
+})->name('/');
+
+Route::get('/Poster', [PosterController::class, 'index'])->name('home');
 Route::get('/Poster/view/{poster}', [PosterController::class, 'view'])->name('ViewPoster');
+Route::get('/AdminPoster/view/{poster}', [AdminPosterController::class, 'view'])->name('ViewAdminPoster');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
