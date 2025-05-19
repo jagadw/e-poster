@@ -7,10 +7,33 @@ use Illuminate\Support\Facades\Storage;
 
 class AdminPosterController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posters = Poster::latest()->paginate(10);
-        return view('AdminPoster.index', compact('posters'));
+        $posters = Poster::orderBy('code', 'desc')->paginate(10);
+        
+        $code = $request->input('code');
+        $author = $request->input('author');
+        $file = $request->input('file_type');
+
+        if ($code) {
+            $posters = $posters->filter(fn($p) =>
+                str_contains(strtolower($p['code']), strtolower($code))
+            );
+        }
+    
+        if ($author) {
+            $posters = $posters->filter(fn($p) =>
+                str_contains(strtolower($p['name']), strtolower($author))
+            );
+        }
+
+        if ($file) {
+            $posters = $posters->filter(fn($p) =>
+                str_contains(strtolower($p['file']), strtolower($file))
+            );
+        }
+
+        return view('AdminPoster.index', compact('posters', 'code', 'author', 'file'));
     }
 
     public function create()
@@ -45,9 +68,9 @@ class AdminPosterController extends Controller
         return redirect()->route('AdminPoster.index')->with('success', 'Poster created successfully.');
     }
 
-    public function show(Poster $poster)
+    public function view(Poster $poster)
     {
-        return view('AdminPoster.show', compact('poster'));
+        return view('AdminPoster.view', compact('poster'));
     }
 
     public function edit(Poster $AdminPoster)
