@@ -17,9 +17,9 @@
 
         <!-- Zoom Controls -->
         <div class="flex justify-center mb-4 relative">
-            <button onclick="zoomIn()" class="ml-2 px-3 py-1 bg-blue-600 text-white rounded">Zoom In</button>
-            <button onclick="zoomOut()" class="ml-2 px-3 py-1 bg-blue-600 text-white rounded">Zoom Out</button>
-            <button onclick="resetZoom()" class="ml-2 px-3 py-1 bg-blue-600 text-white rounded">Reset</button>
+            <button onclick="zoomIn()" class="ml-2 px-3 py-1 bg-[#36ab40] text-white rounded">Zoom In</button>
+            <button onclick="zoomOut()" class="ml-2 px-3 py-1 bg-[#36ab40] text-white rounded">Zoom Out</button>
+            <button onclick="resetZoom()" class="ml-2 px-3 py-1 bg-[#36ab40] text-white rounded">Reset</button>
         </div>
 
     @elseif($extension === 'pdf')
@@ -35,13 +35,13 @@
         <!-- Unknown Format -->
         <p class="text-red-600 text-center">Preview tidak tersedia untuk format ini.</p>
         <div class="text-center mt-4">
-            <a href="{{ $fileUrl }}" target="_blank" class="text-blue-600 underline">Buka file di tab baru</a>
+            <a href="{{ $fileUrl }}" target="_blank" class="text-[#36ab40] underline">Buka file di tab baru</a>
         </div>
     @endif
 
     <!-- Back Link -->
     <div class="text-center mt-6">
-        <a href="{{ route('home') }}" class="text-blue-600">← Back</a>
+        <a href="{{ route('home') }}" class="px-3 py-1 bg-[#36ab40] text-white rounded">Back</a>
     </div>
 </div>
 
