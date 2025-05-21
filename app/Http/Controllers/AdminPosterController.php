@@ -13,6 +13,8 @@ class AdminPosterController extends Controller
         
         $code = $request->input('code');
         $author = $request->input('author');
+        $title = $request->input('title');
+        $category = $request->input('category');
         $file = $request->input('file_type');
 
         if ($code) {
@@ -27,13 +29,25 @@ class AdminPosterController extends Controller
             );
         }
 
+        if ($title) {
+            $posters = $posters->filter(fn($p) =>
+                str_contains(strtolower($p['title']), strtolower($title))
+            );
+        }
+
+        if ($category) {
+            $posters = $posters->filter(fn($p) =>
+                str_contains(strtolower($p['code']), strtolower($category))
+            );
+        }
+
         if ($file) {
             $posters = $posters->filter(fn($p) =>
                 str_contains(strtolower($p['file']), strtolower($file))
             );
         }
 
-        return view('AdminPoster.index', compact('posters', 'code', 'author', 'file'));
+        return view('AdminPoster.index', compact('posters', 'code', 'author', 'title', 'category', 'file'));
     }
 
     public function create()

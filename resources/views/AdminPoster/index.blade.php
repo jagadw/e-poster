@@ -22,6 +22,17 @@
             placeholder="Search by Author"
             class="input border px-4 py-2 rounded w-full md:w-1/3">
 
+        <input type="text" id="input3" name="title" value="{{ request('title') }}"
+            placeholder="Search by Title"
+            class="input border px-4 py-2 rounded w-full md:w-1/3">
+
+        <select name="category" class="border px-4 py-2 rounded w-full md:w-1/4">
+            <option value="" selected disabled>All Category</option>
+            <option value="A" {{ request('category') == 'Alam' ? 'selected' : '' }}>Alam</option>
+            <option value="S" {{ request('category') == 'Sosial' ? 'selected' : '' }}>Sosial</option>
+            <option value="D" {{ request('category') == 'Dunia' ? 'selected' : '' }}>Dunia</option>
+        </select>
+
         <select name="file_type" class="border px-4 py-2 rounded w-full md:w-1/3">
             <option value="" selected disabled>All File Types</option>
             <option value="pdf" {{ request('file_type') == 'pdf' ? 'selected' : '' }}>PDF</option>
@@ -49,6 +60,9 @@
                 </tr>
             </thead>
             <tbody>
+                @if($posters->isEmpty())
+                <p>No items found.</p>
+                @else
                 @foreach ($posters as $poster)
                     <tr>
                         <td class="border px-2 py-1 text-center">{{ $loop->iteration }}</td>
@@ -68,10 +82,11 @@
                         </td>
                     </tr>
                 @endforeach
+                @endif
             </tbody>
         </table>
 
-        {{ $posters->links() }}
+        {{-- {{ $posters->links() }} --}}
         <div id="keyboard-container" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; background: #fff; box-shadow: 0 -4px 10px rgba(0,0,0,0.2); padding: 10px;">
             <div class="simple-keyboard"></div>
           </div>
