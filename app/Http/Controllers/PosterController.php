@@ -17,6 +17,8 @@ class PosterController extends Controller
         
         $code = $request->input('code');
         $author = $request->input('author');
+        $title = $request->input('title');
+        $category = $request->input('category');
         $file = $request->input('file_type');
 
         if ($code) {
@@ -31,13 +33,25 @@ class PosterController extends Controller
             );
         }
 
+        if ($title) {
+            $Posters = $Posters->filter(fn($p) =>
+                str_contains(strtolower($p['title']), strtolower($title))
+            );
+        }
+
+        if ($category) {
+            $Posters = $Posters->filter(fn($p) =>
+                str_contains(strtolower($p['code']), strtolower($category))
+            );
+        }
+
         if ($file) {
             $Posters = $Posters->filter(fn($p) =>
                 str_contains(strtolower($p['file']), strtolower($file))
             );
         }
 
-        return view('Poster.index', compact('Posters', 'code', 'author', 'file'));
+        return view('Poster.index', compact('Posters', 'code', 'author', 'title', 'category','file'));
     }
     
     public function view(Poster $poster)

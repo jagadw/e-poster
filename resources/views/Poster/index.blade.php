@@ -21,7 +21,18 @@
             placeholder="Search by Author"
             class="input border px-4 py-2 rounded w-full md:w-1/3">
 
-        <select name="file_type" class="border px-4 py-2 rounded w-full md:w-1/3">
+        <input type="text" id="input3" name="title" value="{{ request('title') }}"
+            placeholder="Search by Title"
+            class="input border px-4 py-2 rounded w-full md:w-1/3">
+
+        <select name="category" class="border px-4 py-2 rounded w-full md:w-1/4">
+            <option value="" selected disabled>All Category</option>
+            <option value="A" {{ request('category') == 'Alam' ? 'selected' : '' }}>Alam</option>
+            <option value="S" {{ request('category') == 'Sosial' ? 'selected' : '' }}>Sosial</option>
+            <option value="D" {{ request('category') == 'Dunia' ? 'selected' : '' }}>Dunia</option>
+        </select>
+
+        <select name="file_type" class="border px-4 py-2 rounded w-full md:w-1/5">
             <option value="" selected disabled>All File Types</option>
             <option value="pdf" {{ request('file_type') == 'pdf' ? 'selected' : '' }}>PDF</option>
             <option value="jpg" {{ request('file_type') == 'jpg' ? 'selected' : '' }}>JPG</option>
@@ -46,7 +57,10 @@
                         <th class="border px-2 py-1">File</th>
                     </tr>
                 </thead>
-                <tbody>
+                  <tbody>
+                    @if($Posters->isEmpty())
+                    <p>No items found.</p>
+                    @else
                     @foreach ($Posters as $poster)
                         <tr>
                             <td class="border px-2 py-1 text-center">{{ $poster->code }}</td>
@@ -58,6 +72,7 @@
                             </td>
                         </tr>
                     @endforeach
+                    @endif
                 </tbody>
             </table>
             {{-- {{ $Posters->links() }} --}}
