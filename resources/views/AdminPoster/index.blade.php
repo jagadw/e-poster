@@ -11,7 +11,7 @@
         {{-- @if(session('success'))
             <div class="mt-4 text-green-600">{{ session('success') }}</div>
         @endif --}}
-        <form id="formSearch" method="GET" action="{{ route('home') }}"
+        <form id="formSearch" method="GET" action="{{ route('AdminPoster.index') }}"
         class="mb-4 space-y-2 md:space-y-0 md:flex md:space-x-2">
 
         <input type="text" id="input1" name="code" value="{{ request('code') }}"
@@ -42,7 +42,7 @@
 
         <button type="submit" class="bg-[#36ab40] text-white px-4 py-2 rounded">GO</button>
 
-        <a href="{{ route('home') }}" class="bg-[#36ab40] text-white px-4 py-2 rounded">
+        <a href="{{ route('AdminPoster.index') }}" class="bg-[#36ab40] text-white px-4 py-2 rounded">
             SHOW ALL POSTERS
         </a>
         </form>
