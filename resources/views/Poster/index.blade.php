@@ -50,6 +50,7 @@
             <table class="w-full mt-4 border">
                 <thead>
                     <tr class="bg-[#36ab40] text-white">
+                        <th class="border px-2 py-1">No</th>
                         <th class="border px-2 py-1">Code</th>
                         <th class="border px-2 py-1">Name</th>
                         <th class="border px-2 py-1">Title</th>
@@ -63,6 +64,7 @@
                     @else
                     @foreach ($Posters as $poster)
                         <tr>
+                            <td class="border px-2 py-1 text-center">{{ $loop->iteration }}</td>
                             <td class="border px-2 py-1 text-center">{{ $poster->code }}</td>
                             <td class="border px-2 py-1 text-center">{{ $poster->name }}</td>
                             <td class="border px-2 py-1 text-center">{{ $poster->title }}</td>
