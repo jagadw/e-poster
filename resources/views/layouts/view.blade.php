@@ -6,18 +6,19 @@
     <title>e-Poster</title>
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
-    <style>
-      /* .input {
-        padding: 10px;
-        font-size: 16px;
-        width: 300px;
-      } */
-    </style>
 </head>
 
-<body class="bg-gray-100 p-4">
-    <div class="container mx-auto">
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+    <!-- Main Content -->
+    <div class="container mx-auto flex-grow p-4">
         @yield('content')
     </div>
+
+    <!-- Sticky Footer -->
+    {{-- <footer class="bg-[#36ab40] text-white text-center py-4">
+        &copy; {{ date('Y') }} e-Poster. All rights reserved.
+    </footer> --}}
+
 </body>
 </html>
