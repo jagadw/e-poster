@@ -1,6 +1,7 @@
 @extends('layouts.view')
 
 @section('content')
+<div id="table-wrapper">
 <div class="flex items-center justify-center min-h-screen bg-white">
     <div class="text-center space-y-6 w-[90%] max-w-md">
         <div class="flex justify-center">
@@ -30,5 +31,6 @@
             </a>
         </div>
     </div>
+</div>
 </div>
 @endsection
