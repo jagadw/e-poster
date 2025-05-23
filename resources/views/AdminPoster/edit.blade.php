@@ -3,6 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800">Edit Poster</h2>
     </x-slot>
 
+    <div id="table-wrapper">
     <div class="py-4 px-6">
         <form action="{{ route('AdminPoster.update', $poster) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
@@ -27,5 +28,6 @@
             <button class="bg-green-600 text-white px-4 py-2 rounded">Update</button>
             <a href="{{ route('AdminPoster.index') }}" class="bg-[#6f7575] text-white px-4 py-3 rounded">Back</a>
         </form>        
+    </div>
     </div>
 </x-app-layout>
