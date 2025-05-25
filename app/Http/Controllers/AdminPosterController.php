@@ -61,7 +61,8 @@ class AdminPosterController extends Controller
             'name' => 'required',
             'title' => 'required',
             'affiliate' => 'nullable',
-            'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            // 'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'file' => 'required|file|max:20480|mimetypes:application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation,image/jpeg,image/png',
         ]);
 
         $last = Poster::orderBy('code', 'desc')->first();
@@ -98,7 +99,8 @@ class AdminPosterController extends Controller
             'name' => 'required',
             'title' => 'required',
             'affiliate' => 'nullable',
-            'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf,docx,pptx|max:20460',
+            // 'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf,docx,pptx|max:20460',
+            'file' => 'required|file|max:20480|mimetypes:application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation,image/jpeg,image/png',
         ]);
     
         $data = $request->only('name', 'title', 'affiliate');
