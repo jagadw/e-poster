@@ -11,7 +11,7 @@ class PodiumPresentation extends Model
     // public $incrementing = false;
     // protected $keyType = 'string';
 
-    protected $fillable = ['code', 'name', 'title', 'date', 'time_start', 'time_end', 'room'];
+    protected $fillable = ['code', 'date', 'time_start', 'time_end', 'room'];
 
     public function poster()
     {
