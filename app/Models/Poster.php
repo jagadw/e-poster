@@ -12,4 +12,9 @@ class Poster extends Model
 
     protected $fillable = ['code', 'name', 'title', 'affiliate', 'file'];
 
+    public function podiumPresentations()
+    {
+        return $this->hasMany(PodiumPresentation::class, 'code', 'code');
+    }
+
 }
