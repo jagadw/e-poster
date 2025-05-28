@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        {{-- <x-application-logo class="block h-9 w-auto fill-current text-gray-800" /> --}}
+                        <img src="{{ asset('images/kopapdi.png') }}" alt="Logo" class="h-14">
                     </a>
                 </div>
 
@@ -21,7 +21,11 @@
                         {{ __('All Poster') }}
                     </x-nav-link>
                 </div>
-
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('presentations.index')" :active="request()->routeIs('presentations.index')">
+                        {{ __('Presentations') }}
+                    </x-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
@@ -78,6 +82,9 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('AdminPoster.index')" :active="request()->routeIs('AdminPoster.index')">
                 {{ __('All Poster') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('presentations.index')" :active="request()->routeIs('presentations.index')">
+                {{ __('Presentations') }}
             </x-responsive-nav-link>
         </div>
 
