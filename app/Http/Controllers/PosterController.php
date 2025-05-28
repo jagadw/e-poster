@@ -13,45 +13,38 @@ class PosterController extends Controller
     public function index(Request $request)
     {
         //
-        $Posters = Poster::orderBy('code', 'desc')->paginate(10);
-        
-        $code = $request->input('code');
-        $author = $request->input('author');
-        $title = $request->input('title');
-        $category = $request->input('category');
-        $file = $request->input('file_type');
+        $query = Poster::query()->orderBy('code', 'desc');
 
-        if ($code) {
-            $Posters = $Posters->filter(fn($p) =>
-                str_contains(strtolower($p['code']), strtolower($code))
-            );
-        }
-    
-        if ($author) {
-            $Posters = $Posters->filter(fn($p) =>
-                str_contains(strtolower($p['name']), strtolower($author))
-            );
+        if ($request->filled('code')) {
+            $query->where('code', 'like', '%' . $request->code . '%');
         }
 
-        if ($title) {
-            $Posters = $Posters->filter(fn($p) =>
-                str_contains(strtolower($p['title']), strtolower($title))
-            );
+        if ($request->filled('author')) {
+            $query->where('name', 'like', '%' . $request->author . '%');
         }
 
-        if ($category) {
-            $Posters = $Posters->filter(fn($p) =>
-                str_contains(strtolower($p['code']), strtolower($category))
-            );
+        if ($request->filled('title')) {
+            $query->where('title', 'like', '%' . $request->title . '%');
         }
 
-        if ($file) {
-            $Posters = $Posters->filter(fn($p) =>
-                str_contains(strtolower($p['file']), strtolower($file))
-            );
+        if ($request->filled('category')) {
+            $query->where('code', 'like', '%' . $request->category . '%');
         }
 
-        return view('Poster.index', compact('Posters', 'code', 'author', 'title', 'category','file'));
+        if ($request->filled('file_type')) {
+            $query->where('file', 'like', '%' . $request->file_type . '%');
+        }
+
+        $posters = $query->paginate(10)->withQueryString();
+
+        return view('Poster.index', [
+            'posters' => $posters,
+            'code' => $request->code,
+            'author' => $request->author,
+            'title' => $request->title,
+            'category' => $request->category,
+            'file' => $request->file_type,
+        ]);
     }
     
     public function view(Poster $poster)

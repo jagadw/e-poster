@@ -9,45 +9,38 @@ class AdminPosterController extends Controller
 {
     public function index(Request $request)
     {
-        $posters = Poster::orderBy('code', 'desc')->paginate(10);
-        
-        $code = $request->input('code');
-        $author = $request->input('author');
-        $title = $request->input('title');
-        $category = $request->input('category');
-        $file = $request->input('file_type');
+        $query = Poster::query()->orderBy('code', 'desc');
 
-        if ($code) {
-            $posters = $posters->filter(fn($p) =>
-                str_contains(strtolower($p['code']), strtolower($code))
-            );
-        }
-    
-        if ($author) {
-            $posters = $posters->filter(fn($p) =>
-                str_contains(strtolower($p['name']), strtolower($author))
-            );
+        if ($request->filled('code')) {
+            $query->where('code', 'like', '%' . $request->code . '%');
         }
 
-        if ($title) {
-            $posters = $posters->filter(fn($p) =>
-                str_contains(strtolower($p['title']), strtolower($title))
-            );
+        if ($request->filled('author')) {
+            $query->where('name', 'like', '%' . $request->author . '%');
         }
 
-        if ($category) {
-            $posters = $posters->filter(fn($p) =>
-                str_contains(strtolower($p['code']), strtolower($category))
-            );
+        if ($request->filled('title')) {
+            $query->where('title', 'like', '%' . $request->title . '%');
         }
 
-        if ($file) {
-            $posters = $posters->filter(fn($p) =>
-                str_contains(strtolower($p['file']), strtolower($file))
-            );
+        if ($request->filled('category')) {
+            $query->where('code', 'like', '%' . $request->category . '%');
         }
 
-        return view('AdminPoster.index', compact('posters', 'code', 'author', 'title', 'category', 'file'));
+        if ($request->filled('file_type')) {
+            $query->where('file', 'like', '%' . $request->file_type . '%');
+        }
+
+        $posters = $query->paginate(10)->withQueryString();
+
+        return view('AdminPoster.index', [
+            'posters' => $posters,
+            'code' => $request->code,
+            'author' => $request->author,
+            'title' => $request->title,
+            'category' => $request->category,
+            'file' => $request->file_type,
+        ]);
     }
 
     public function create()
@@ -58,29 +51,38 @@ class AdminPosterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required',
-            'title' => 'required',
-            'affiliate' => 'nullable',
-            // 'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
-            'file' => 'required|file|max:20480|mimetypes:application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation,image/jpeg,image/png',
+            'category'  => 'required|string',
+            'name'      => 'required|string',
+            'title'     => 'required|string',
+            'affiliate' => 'nullable|string',
+            'file'      => 'required|file|mimes:pdf,docx,pptx,jpg,jpeg,png|max:20480',
         ]);
-
-        $last = Poster::orderBy('code', 'desc')->first();
-        $nextNumber = $last ? intval(substr($last->code, 2)) + 1 : 1;
-        $category = $request->category;
-        $code = $category . '-' . str_pad($nextNumber, 4, '0', STR_PAD_LEFT);
-
+    
+        $category = strtoupper($request->category);
+    
+        $last = Poster::where('code', 'like', "$category-%")
+                      ->orderBy('code', 'desc')
+                      ->first();
+    
+        if ($last && preg_match('/^' . $category . '-(\d{4})$/', $last->code, $m)) {
+            $next = intval($m[1]) + 1;
+        } else {
+            $next = 1;
+        }
+    
+        $code = $category . '-' . str_pad($next, 4, '0', STR_PAD_LEFT);
         $path = $request->file('file')->store('posters', 'public');
-
+    
         Poster::create([
-            'code' => $code,
-            'name' => $request->name,
-            'title' => $request->title,
+            'code'      => $code,
+            'name'      => $request->name,
+            'title'     => $request->title,
             'affiliate' => $request->affiliate,
-            'file' => $path,
+            'file'      => $path,
         ]);
-
-        return redirect()->route('AdminPoster.index')->with('success', 'Poster created successfully.');
+    
+        return redirect()->route('AdminPoster.index')
+                         ->with('success', "Poster {$code} created successfully.");
     }
 
     public function view(Poster $poster)
@@ -99,8 +101,7 @@ class AdminPosterController extends Controller
             'name' => 'required',
             'title' => 'required',
             'affiliate' => 'nullable',
-            // 'file' => 'nullable|file|mimes:jpg,jpeg,png,pdf,docx,pptx|max:20460',
-            'file' => 'required|file|max:20480|mimetypes:application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.openxmlformats-officedocument.presentationml.presentation,image/jpeg,image/png',
+            'file' => 'nullable|file|mimes:pdf,docx,pptx,jpg,jpeg,png|max:20480',
         ]);
     
         $data = $request->only('name', 'title', 'affiliate');
