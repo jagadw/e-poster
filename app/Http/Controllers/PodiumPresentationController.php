@@ -5,28 +5,42 @@ namespace App\Http\Controllers;
 use App\Models\PodiumPresentation;
 use App\Models\Poster;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PodiumPresentationController extends Controller
 {
 
     public function index(Request $request)
     {
-        $query = PodiumPresentation::query();
+        $query = DB::table('podium_presentations')
+        ->join('posters', 'podium_presentations.code', '=', 'posters.code')
+        ->select(
+            'podium_presentations.id',
+            'podium_presentations.code',
+            'posters.name',
+            'posters.title',
+            'podium_presentations.date',
+            'podium_presentations.time_start',
+            'podium_presentations.time_end',
+            'podium_presentations.room'
+        );
 
-        if ($request->filled('code')) {
-            $query->where('code', 'like', '%' . $request->code . '%');
-        }
+    if ($request->filled('code')) {
+        $query->where('podium_presentations.code', 'like', '%' . $request->code . '%');
+    }
 
-        if ($request->filled('title')) {
-            $query->where('title', 'like', '%' . $request->title . '%');
-        }
+    if ($request->filled('title')) {
+        $query->where('posters.title', 'like', '%' . $request->title . '%');
+    }
 
-        if ($request->filled('author')) {
-            $query->where('name', 'like', '%' . $request->author . '%');
-        }
+    if ($request->filled('author')) {
+        $query->where('posters.name', 'like', '%' . $request->author . '%');
+    }
 
-        $presentations = $query->paginate(10)->withQueryString();
-        return view('presentations.index', compact('presentations'));
+    $presentations = $query->paginate(10)->withQueryString();
+
+    return view('presentations.index', compact('presentations'));
+
     }
 
     public function create()
@@ -41,8 +55,8 @@ class PodiumPresentationController extends Controller
     {
         $request->validate([
             'code' => 'required|unique:podium_presentations,code',
-            'name' => 'required',
-            'title' => 'required',
+            // 'name' => 'required',
+            // 'title' => 'required',
             'date' => 'required|date',
             'time_start' => 'required',
             'time_end' => 'required',
@@ -55,16 +69,18 @@ class PodiumPresentationController extends Controller
 
     public function edit(PodiumPresentation $presentation)
     {
-        $posters = Poster::all();
-        return view('presentations.edit', compact('presentation', 'posters'));
+        $posters = Poster::whereIn('code', PodiumPresentation::pluck('code'))->get();
+        $posterDetail = Poster::where('code', $presentation->code)->first();
+    
+        return view('presentations.edit', compact('presentation', 'posters', 'posterDetail'));
     }
-
+    
     public function update(Request $request, PodiumPresentation $presentation)
     {
         $request->validate([
             'code' => 'required|unique:podium_presentations,code,' . $presentation->id,
-            'name' => 'required',
-            'title' => 'required',
+            // 'name' => 'required',
+            // 'title' => 'required',
             'date' => 'required|date',
             'time_start' => 'required',
             'time_end' => 'required',
