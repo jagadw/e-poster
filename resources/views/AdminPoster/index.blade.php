@@ -11,40 +11,41 @@
         {{-- @if(session('success'))
             <div class="mt-4 text-green-600">{{ session('success') }}</div>
         @endif --}}
-        <form id="formSearch" method="GET" action="{{ route('AdminPoster.index') }}"
-        class="mb-4 space-y-2 md:space-y-0 md:flex md:space-x-2">
+            <form id="formSearch" method="GET" action="{{ route('AdminPoster.index') }}"
+            class="mb-4 flex flex-wrap items-center gap-2">
 
-        <input type="text" id="input1" name="code" value="{{ request('code') }}"
-            placeholder="Search by Code"
-            class="input border px-4 py-2 rounded w-full md:w-1/3">
+            <input type="text" class="input" id="input1" name="code" value="{{ request('code') }}"
+                placeholder="Search by Code"
+                class="border px-3 py-1.5 rounded w-[160px]">
 
-        <input type="text" id="input2" name="author" value="{{ request('author') }}"
-            placeholder="Search by Author"
-            class="input border px-4 py-2 rounded w-full md:w-1/3">
+            <input type="text" class="input" id="input2" name="author" value="{{ request('author') }}"
+                placeholder="Search by Author"
+                class="border px-3 py-1.5 rounded w-[160px]">
 
-        <input type="text" id="input3" name="title" value="{{ request('title') }}"
-            placeholder="Search by Title"
-            class="input border px-4 py-2 rounded w-full md:w-1/3">
+            <input type="text" class="input" id="input3" name="title" value="{{ request('title') }}"
+                placeholder="Search by Title"
+                class="border px-3 py-1.5 rounded w-[160px]">
 
-        <select name="category" class="border px-4 py-2 rounded w-full md:w-1/4">
-            <option value="" selected disabled>All Category</option>
-            <option value="A" {{ request('category') == 'Alam' ? 'selected' : '' }}>Alam</option>
-            <option value="S" {{ request('category') == 'Sosial' ? 'selected' : '' }}>Sosial</option>
-            <option value="D" {{ request('category') == 'Dunia' ? 'selected' : '' }}>Dunia</option>
-        </select>
+            <select name="category" class="border px-3 py-1.5 rounded w-[140px]">
+                <option value="">All Category</option>
+                <option value="A" {{ request('category') == 'A' ? 'selected' : '' }}>Alam</option>
+                <option value="S" {{ request('category') == 'S' ? 'selected' : '' }}>Sosial</option>
+                <option value="D" {{ request('category') == 'D' ? 'selected' : '' }}>Dunia</option>
+            </select>
 
-        <select name="file_type" class="border px-4 py-2 rounded w-full md:w-1/3">
-            <option value="" selected disabled>All File Types</option>
-            <option value="pdf" {{ request('file_type') == 'pdf' ? 'selected' : '' }}>PDF</option>
-            <option value="jpg" {{ request('file_type') == 'jpg' ? 'selected' : '' }}>JPG</option>
-            <option value="png" {{ request('file_type') == 'png' ? 'selected' : '' }}>PNG</option>
-        </select>
+            <select name="file_type" class="border px-3 py-1.5 rounded w-[140px]">
+                <option value="">All File Types</option>
+                <option value="pdf" {{ request('file_type') == 'pdf' ? 'selected' : '' }}>PDF</option>
+                <option value="jpg" {{ request('file_type') == 'jpg' ? 'selected' : '' }}>JPG</option>
+                <option value="png" {{ request('file_type') == 'png' ? 'selected' : '' }}>PNG</option>
+            </select>
 
-        <button type="submit" class="bg-[#36ab40] text-white px-4 py-2 rounded">GO</button>
+            <button type="submit" class="bg-[#36ab40] text-white px-3 py-1.5 rounded">GO</button>
 
-        <a href="{{ route('AdminPoster.index') }}" class="bg-[#36ab40] text-white px-4 py-2 rounded">
-            SHOW ALL POSTERS
-        </a>
+            <a href="{{ route('AdminPoster.index') }}"
+                class="bg-[#36ab40] text-white px-3 py-1.5 rounded">
+                SHOW ALL POSTERS
+            </a>
         </form>
 
         <table class="w-full mt-4 border overflow-x-auto">
@@ -86,7 +87,7 @@
             </tbody>
         </table>
 
-        {{-- {{ $posters->links() }} --}}
+        {{ $posters->links() }}
         <div id="keyboard-container" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; background: #fff; box-shadow: 0 -4px 10px rgba(0,0,0,0.2); padding: 10px;">
             <div class="simple-keyboard"></div>
           </div>
