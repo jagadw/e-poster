@@ -3,7 +3,7 @@
       <h2 class="font-semibold text-xl text-gray-800">Podium Presentation</h2>
   </x-slot>
 
-  <div id="table-wrapper">
+  <div id="table-wrapper" class="table-container">
       <div class="py-4 px-6">
 
           <div class="py-4">

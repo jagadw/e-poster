@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800">Edit Presentation</h2>
     </x-slot>
 
-    <div id="table-wrapper">
+    <div id="table-wrapper" class="table-container">
         <div class="py-4 px-6">
             <form action="{{ route('presentations.update', $presentation) }}" method="POST" class="space-y-4">
                 @csrf
@@ -73,3 +73,11 @@
         }
     </script>
 </x-app-layout>
+
+@if (session('error'))
+    <script>
+        window.onload = function() {
+            alert("{{ session('error') }}");
+        };
+    </script>
+@endif

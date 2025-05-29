@@ -1,7 +1,7 @@
 @extends('layouts.view')
 
 @section('content')
-<div id="table-wrapper">
+<div id="table-wrapper" class="table-container">
     <div class="py-4 px-6">
 
         <div class="py-4">
