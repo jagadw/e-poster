@@ -75,7 +75,12 @@
                         <td class="border px-2 py-1 text-center">{{ $poster->title }}</td>
                         <td class="border px-2 py-1 text-center">{{ $poster->affiliate }}</td>
                         <td class="border px-2 py-1 text-center">
-                            <a href="{{ route('ViewAdminPoster', $poster) }}" class="bg-[#36ab40] text-white px-2 py-1 rounded">View</a>
+                            <a href="#" 
+                            class="bg-[#36ab40] text-white px-2 py-1 rounded open-modal"
+                            data-file="{{ asset('storage/' . $poster->file) }}"
+                            data-extension="{{ pathinfo($poster->file, PATHINFO_EXTENSION) }}">
+                            View
+                          </a>
                         </td>
                         <td class="border px-2 py-1 text-center">
                             <form action="{{ route('AdminPoster.destroy', $poster) }}" method="POST" class="inline">
@@ -97,44 +102,23 @@
     </div>
     </div>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
-    <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
-
-    <script>
-        const Keyboard = window.SimpleKeyboard.default;
+    <div id="previewModal" class="fixed z-50 top-0 left-0 w-full h-full bg-black hidden">
+        <div class="w-full h-full relative overflow-hidden" id="modalContent">
+          <div id="zoomContainer" class="absolute top-0 left-0 origin-top-left transform">
+            <!-- File Content Here -->
+          </div>
       
-        let currentInput = null;
-      
-        const keyboard = new Keyboard({
-          onChange: input => {
-            if (currentInput) {
-              currentInput.value = input;
-            }
-          },
-          onKeyPress: button => {
-            console.log("Key pressed:", button);
-          }
-        });
-      
-        const keyboardContainer = document.getElementById("keyboard-container");
-      
-        // Input fields
-        const inputs = document.querySelectorAll(".input");
-      
-        inputs.forEach(input => {
-          input.addEventListener("click", () => {
-            currentInput = input;
-            keyboard.setInput(input.value || "");
-            keyboardContainer.style.display = "block";
-          });
-        });
-      
-        // Hide keyboard on outside click
-        document.addEventListener("click", function (e) {
-          if (!keyboardContainer.contains(e.target) && !Array.from(inputs).includes(e.target)) {
-            keyboardContainer.style.display = "none";
-          }
-        });
-      </script>
-
+          <!-- Zoom Control -->
+          <div class="absolute top-4 right-4 z-50 flex flex-col gap-2">
+            <button id="zoomIn" class="bg-white text-black px-3 py-1 rounded shadow">+</button>
+            <button id="zoomOut" class="bg-white text-black px-3 py-1 rounded shadow">−</button>
+            <button id="resetZoom" class="bg-white text-black px-3 py-1 rounded shadow">Reset</button>
+            <button id="closeModal" class="bg-red-600 text-white px-3 py-1 rounded shadow">X</button>
+          </div>
+        </div>
+      </div>
+  
+          <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
+          <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
+  
 </x-app-layout>
