@@ -24,12 +24,12 @@
 
     @elseif($extension === 'pdf')
         <!-- PDF Preview -->
-        <iframe src="{{ $fileUrl }}" width="100%" height="600px" style="border: none;"></iframe>
+        <iframe src="{{ $fileUrl }}" width="100%" height="100%" style="border: none;"></iframe>
 
     @elseif(in_array($extension, ['docx', 'ppt', 'pptx']))
         <!-- Office Preview via Google Docs -->
         <iframe src="https://docs.google.com/gview?url={{ urlencode($fileUrl) }}&embedded=true"
-                style="width:100%; height:600px;" frameborder="0"></iframe>
+                style="width:100%; height:100%;" frameborder="0"></iframe>
 
     @else
         <!-- Unknown Format -->

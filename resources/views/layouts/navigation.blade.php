@@ -21,11 +21,11 @@
                         {{ __('All Poster') }}
                     </x-nav-link>
                 </div>
-                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                {{-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('presentations.index')" :active="request()->routeIs('presentations.index')">
                         {{ __('Presentations') }}
                     </x-nav-link>
-                </div>
+                </div> --}}
             </div>
 
             <!-- Settings Dropdown -->
@@ -83,9 +83,9 @@
             <x-responsive-nav-link :href="route('AdminPoster.index')" :active="request()->routeIs('AdminPoster.index')">
                 {{ __('All Poster') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('presentations.index')" :active="request()->routeIs('presentations.index')">
+            {{-- <x-responsive-nav-link :href="route('presentations.index')" :active="request()->routeIs('presentations.index')">
                 {{ __('Presentations') }}
-            </x-responsive-nav-link>
+            </x-responsive-nav-link> --}}
         </div>
 
         <!-- Responsive Settings Options -->
