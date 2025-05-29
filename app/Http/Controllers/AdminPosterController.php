@@ -50,6 +50,7 @@ class AdminPosterController extends Controller
 
     public function store(Request $request)
     {
+        try {
         $request->validate([
             'category'  => 'required|string',
             'name'      => 'required|string',
@@ -83,6 +84,9 @@ class AdminPosterController extends Controller
     
         return redirect()->route('AdminPoster.index')
                          ->with('success', "Poster {$code} created successfully.");
+        } catch (\Exception $e) {
+          return redirect()->back()->with('error', 'ERROR : Failed to add poster, Please try again.');
+        }                
     }
 
     public function view(Poster $poster)
@@ -97,6 +101,7 @@ class AdminPosterController extends Controller
     
     public function update(Request $request, Poster $AdminPoster)
     {
+        try {
         $request->validate([
             'name' => 'required',
             'title' => 'required',
@@ -116,6 +121,9 @@ class AdminPosterController extends Controller
         $AdminPoster->update($data);
     
         return redirect()->route('AdminPoster.index')->with('success', 'Poster updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'ERROR : Failed to update poster, Please try again.');
+        }
     }
     
     public function destroy(Poster $AdminPoster)
