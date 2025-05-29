@@ -40,7 +40,7 @@
     @endif
 
     <!-- Back Link -->
-    <div class="text-center mt-6">
+    <div class="text-center mt-6 relative">
         <a href="{{ route('home') }}" class="px-3 py-1 bg-[#36ab40] text-white rounded">Back</a>
     </div>
 </div>
