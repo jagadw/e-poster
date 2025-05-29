@@ -8,7 +8,7 @@
             <img src="{{ asset('images/kopapdi.png') }}" alt="Logo" class="h-auto w-32 sm:w-40 md:w-52 lg:w-64 xl:w-72 object-contain">
         </div>
 
-        <h1 class="text-xl font-semibold tracking-wide uppercase">Presentation Menu</h1>
+        <h1 class="text-xl font-semibold tracking-wide uppercase">Poster Menu</h1>
 
         <div class="space-y-4">
             {{-- <a href="{{ route('GuestPresentation') }}" class="block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded shadow-md">
