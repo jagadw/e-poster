@@ -53,6 +53,7 @@ class PodiumPresentationController extends Controller
 
     public function store(Request $request)
     {
+        try {
         $request->validate([
             'code' => 'required|unique:podium_presentations,code',
             // 'name' => 'required',
@@ -65,6 +66,10 @@ class PodiumPresentationController extends Controller
 
         PodiumPresentation::create($request->all());
         return redirect()->route('presentations.index')->with('success', 'Presentation created successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'ERROR : Failed to add schedule, Please try again.');
+        }                
+
     }
 
     public function edit(PodiumPresentation $presentation)
@@ -77,6 +82,7 @@ class PodiumPresentationController extends Controller
     
     public function update(Request $request, PodiumPresentation $presentation)
     {
+        try {
         $request->validate([
             'code' => 'required|unique:podium_presentations,code,' . $presentation->id,
             // 'name' => 'required',
@@ -89,6 +95,9 @@ class PodiumPresentationController extends Controller
 
         $presentation->update($request->all());
         return redirect()->route('presentations.index')->with('success', 'Presentation updated successfully.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'ERROR : Failed to update schedule, Please try again.');
+        }                
     }
 
     public function destroy(PodiumPresentation $presentation)
