@@ -11,16 +11,16 @@
         <h1 class="text-xl font-semibold tracking-wide uppercase">Presentation Schedule</h1>
 
         <div class="space-y-4">
-            <a href="{{ route('GuestPresentation') }}" class="block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded shadow-md">
+            {{-- <a href="{{ route('GuestPresentation') }}" class="block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded shadow-md">
                 Podium Presentation
             </a>
             <a href="#" class="block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded shadow-md">
                 Podium Video Presentation
-            </a>
+            </a> --}}
             <a href="{{ route('home') }}" class="block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded shadow-md">
                 Podium Poster Presentation
             </a>
-            <a href="#" class="block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded shadow-md">
+            {{-- <a href="#" class="block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded shadow-md">
                 Moderated Video Presentation
             </a>
             <a href="#" class="block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded shadow-md">
@@ -29,7 +29,7 @@
             <a href="#" class="block bg-green-600 hover:bg-green-700 text-white font-semibold py-3 rounded shadow-md">
                 Unmoderated Video
             </a>
-            <a href="{{ route('login') }}" class="block bg-gray-600 hover:bg-green-700 text-white font-semibold py-3 rounded shadow-md">Login {{ '(Admin)' }}</a>
+            <a href="{{ route('login') }}" class="block bg-gray-600 hover:bg-green-700 text-white font-semibold py-3 rounded shadow-md">Login {{ '(Admin)' }}</a> --}}
         </div>
     </div>
 </div>
