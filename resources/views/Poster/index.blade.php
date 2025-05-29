@@ -31,10 +31,13 @@
     
         <select name="file_type" class="border px-3 py-1.5 rounded w-[140px]">
             <option value="">All File Types</option>
-            <option value="pdf" {{ request('file_type') == 'pdf' ? 'selected' : '' }}>PDF</option>
+            <option value="jpeg" {{ request('file_type') == 'jpeg' ? 'selected' : '' }}>JPEG</option>
             <option value="jpg" {{ request('file_type') == 'jpg' ? 'selected' : '' }}>JPG</option>
             <option value="png" {{ request('file_type') == 'png' ? 'selected' : '' }}>PNG</option>
-        </select>
+            <option value="docx" {{ request('file_type') == 'docx' ? 'selected' : '' }}>DOCX</option>
+            <option value="pptx" {{ request('file_type') == 'pptx' ? 'selected' : '' }}>PPTX</option>
+            <option value="pdf" {{ request('file_type') == 'pdf' ? 'selected' : '' }}>PDF</option>
+    </select>
     
         <button type="submit" class="bg-[#36ab40] text-white px-3 py-1.5 rounded">GO</button>
     
