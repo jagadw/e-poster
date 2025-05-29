@@ -2,7 +2,7 @@
 
 @section('content')
 <div id="table-wrapper">
-<div class="flex items-center justify-center min-h-screen bg-white py-6">
+<div class="flex items-center justify-center min-h-screen bg-white py-6 pb-3">
     <div class="text-center space-y-6 w-[90%] max-w-md">
         <div class="flex justify-center">
             <img src="{{ asset('images/kopapdi.png') }}" alt="Logo" class="h-auto w-32 sm:w-40 md:w-52 lg:w-64 xl:w-72 object-contain">

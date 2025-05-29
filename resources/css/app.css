@@ -29,8 +29,7 @@ nav {
     }
 }
 
-@media screen and (orientation: landscape) {
-    .container {
+    .table-container {
         margin-top: 3rem;
         margin-bottom: 3rem;
         position: fixed;
@@ -45,7 +44,6 @@ nav {
         padding: 1rem;
         border-radius: 10px;
     }
-}
 
 .input {
     padding: 10px;

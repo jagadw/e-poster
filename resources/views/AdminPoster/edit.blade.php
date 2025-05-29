@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800">Edit Poster</h2>
     </x-slot>
 
-    <div id="table-wrapper" class="container">
+    <div id="table-wrapper" class="table-container">
     <div class="py-4 px-6">
         <form action="{{ route('AdminPoster.update', $poster) }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf

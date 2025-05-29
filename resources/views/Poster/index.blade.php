@@ -2,7 +2,7 @@
 
     @section('content')
 
-        <div id="table-wrapper" class="py-4 px-6">
+        <div id="table-wrapper" class="py-4 px-6 table-container">
           <div class="pb-4">
             <a href="{{ route('/') }}" class="px-3 py-2 bg-[#6f7575] text-white rounded">Back</a>
         </div>

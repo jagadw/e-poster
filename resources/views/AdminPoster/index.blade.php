@@ -3,7 +3,7 @@
         <h2 class="font-semibold text-xl text-gray-800">Poster List</h2>
     </x-slot>
 
-    <div id="table-wrapper" class="container">
+    <div id="table-wrapper" class="table-container">
         <div class="py-4 px-6">
             <a href="{{ route('AdminPoster.create') }}" class="px-3 py-2 bg-[#36ab40] text-white rounded">Add Poster</a>
         </div>
