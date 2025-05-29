@@ -37,3 +37,11 @@
     </div>
     </div>
 </x-app-layout>
+
+@if (session('error'))
+    <script>
+        window.onload = function() {
+            alert("{{ session('error') }}");
+        };
+    </script>
+@endif
