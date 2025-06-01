@@ -15,6 +15,8 @@ return new class extends Migration
             $table->string('code')->primary();
             $table->string('name');
             $table->string('title');
+            $table->string('email');
+            $table->string('type');
             $table->string('affiliate')->nullable();
             $table->string('file');
             $table->timestamps();
