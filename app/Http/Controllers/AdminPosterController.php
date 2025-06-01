@@ -52,15 +52,19 @@ class AdminPosterController extends Controller
     {
         try {
         $request->validate([
-            'category'  => 'required|string',
+            // 'category'  => 'required|string',
             'name'      => 'required|string',
             'title'     => 'required|string',
+            'email'     => 'required|string',
+            'type'      => 'required|string',
             'affiliate' => 'nullable|string',
             'file'      => 'required|file|mimes:pdf,docx,pptx,jpg,jpeg,png|max:20480',
         ]);
     
-        $category = strtoupper($request->category);
-    
+        // Before
+        // $category = strtoupper($request->category);
+        $category = "EP";
+
         $last = Poster::where('code', 'like', "$category-%")
                       ->orderBy('code', 'desc')
                       ->first();
@@ -78,6 +82,8 @@ class AdminPosterController extends Controller
             'code'      => $code,
             'name'      => $request->name,
             'title'     => $request->title,
+            'email' => $request->email,
+            'type' => $request->type,
             'affiliate' => $request->affiliate,
             'file'      => $path,
         ]);
@@ -85,7 +91,7 @@ class AdminPosterController extends Controller
         return redirect()->route('AdminPoster.index')
                          ->with('success', "Poster {$code} created successfully.");
         } catch (\Exception $e) {
-          return redirect()->back()->with('error', 'ERROR : Failed to add poster, Please try again.');
+          return redirect()->back()->with('error', 'ERROR: ' . $e->getMessage());
         }                
     }
 
@@ -105,6 +111,8 @@ class AdminPosterController extends Controller
         $request->validate([
             'name' => 'required',
             'title' => 'required',
+            'email'     => 'required|string',
+            'type'      => 'required|string',
             'affiliate' => 'nullable',
             'file' => 'nullable|file|mimes:pdf,docx,pptx,jpg,jpeg,png|max:20480',
         ]);
@@ -122,7 +130,7 @@ class AdminPosterController extends Controller
     
         return redirect()->route('AdminPoster.index')->with('success', 'Poster updated successfully.');
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'ERROR : Failed to update poster, Please try again.');
+            return redirect()->back()->with('error', 'ERROR: ' . $e->getMessage());
         }
     }
     
