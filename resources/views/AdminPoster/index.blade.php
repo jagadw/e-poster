@@ -58,7 +58,7 @@
                     <th class="border px-2 py-1">Code</th>
                     <th class="border px-2 py-1">Name</th>
                     <th class="border px-2 py-1">Title</th>
-                    <th class="border px-2 py-1">Affiliate</th>
+                    <th class="border px-2 py-1">Type</th>
                     <th class="border px-2 py-1">File</th>
                     <th class="border px-2 py-1">Actions</th>
                 </tr>
@@ -73,7 +73,7 @@
                         <td class="border px-2 py-1 text-center">{{ $poster->code }}</td>
                         <td class="border px-2 py-1 text-center">{{ $poster->name }}</td>
                         <td class="border px-2 py-1 text-center">{{ $poster->title }}</td>
-                        <td class="border px-2 py-1 text-center">{{ $poster->affiliate }}</td>
+                        <td class="border px-2 py-1 text-center">{{ $poster->type }}</td>
                         <td class="border px-2 py-1 text-center">
                             <a href="#" 
                             class="bg-[#36ab40] text-white px-2 py-1 rounded open-modal"

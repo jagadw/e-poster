@@ -18,6 +18,14 @@
                 <input name="title" value="{{ $poster->title }}" class="w-full border p-2" required>
             </div>
             <div>
+                <label>Email</label>
+                <input type="email" name="email" value="{{ $poster->email }}" class="w-full border p-2" required>
+            </div>
+            <div>
+                <label>Type</label>
+                <input name="type" value="{{ $poster->type }}" class="w-full border p-2" required>
+            </div>
+            <div>
                 <label>Affiliate</label>
                 <input name="affiliate" value="{{ $poster->affiliate }}" class="w-full border p-2">
             </div>
