@@ -10,7 +10,7 @@ class Poster extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    protected $fillable = ['code', 'name', 'title', 'affiliate', 'file'];
+    protected $fillable = ['code', 'name', 'title', 'email', 'type', 'affiliate', 'file'];
 
     public function podiumPresentations()
     {
