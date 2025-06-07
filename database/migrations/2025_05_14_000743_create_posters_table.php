@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('posters', function (Blueprint $table) {
             $table->string('code')->primary();
-            $table->string('name');
             $table->string('title');
-            $table->string('email');
+            $table->string('name');
+            $table->string('email')->nullable();
             $table->string('type');
             $table->string('affiliate')->nullable();
             $table->string('file');

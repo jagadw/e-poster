@@ -13,7 +13,8 @@ class PosterController extends Controller
     public function index(Request $request)
     {
         //
-        $query = Poster::query()->orderBy('code', 'desc');
+        $query = Poster::query()->orderBy('code', 'asc');
+        $types = Poster::select('type')->distinct()->pluck('type');
 
         if ($request->filled('code')) {
             $query->where('code', 'like', '%' . $request->code . '%');
@@ -28,7 +29,7 @@ class PosterController extends Controller
         }
 
         if ($request->filled('category')) {
-            $query->where('code', 'like', '%' . $request->category . '%');
+            $query->where('type', 'like', '%' . $request->category . '%');
         }
 
         if ($request->filled('file_type')) {
@@ -44,6 +45,7 @@ class PosterController extends Controller
             'title' => $request->title,
             'category' => $request->category,
             'file' => $request->file_type,
+            'types' => $types
         ]);
     }
     

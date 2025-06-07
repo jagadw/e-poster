@@ -95,3 +95,39 @@ document.getElementById("closeModal").addEventListener("click", () => {
     document.getElementById("previewModal").classList.add("hidden");
     document.getElementById("modalBackdrop").classList.add("hidden");
 });
+
+// Simple Keyboard integration
+        const Keyboard = window.SimpleKeyboard.default;
+      
+        let currentInput = null;
+      
+        const keyboard = new Keyboard({
+          onChange: input => {
+            if (currentInput) {
+              currentInput.value = input;
+            }
+          },
+          onKeyPress: button => {
+            console.log("Key pressed:", button);
+          }
+        });
+      
+        const keyboardContainer = document.getElementById("keyboard-container");
+      
+        // Input fields
+        const inputs = document.querySelectorAll(".input");
+      
+        inputs.forEach(input => {
+          input.addEventListener("click", () => {
+            currentInput = input;
+            keyboard.setInput(input.value || "");
+            keyboardContainer.style.display = "block";
+          });
+        });
+      
+        // Hide keyboard on outside click
+        document.addEventListener("click", function (e) {
+          if (!keyboardContainer.contains(e.target) && !Array.from(inputs).includes(e.target)) {
+            keyboardContainer.style.display = "none";
+          }
+        });

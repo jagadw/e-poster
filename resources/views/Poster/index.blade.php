@@ -24,9 +24,11 @@
 
     <select name="category" class="border px-3 py-1.5 rounded w-[140px]">
         <option value="">All Category</option>
-        <option value="A" {{ request('category') == 'A' ? 'selected' : '' }}>Alam</option>
-        <option value="S" {{ request('category') == 'S' ? 'selected' : '' }}>Sosial</option>
-        <option value="D" {{ request('category') == 'D' ? 'selected' : '' }}>Dunia</option>
+        @foreach($types as $type)
+            <option value="{{ $type }}" {{ request('category') == $type ? 'selected' : '' }}>
+                {{ ucfirst($type) }}
+            </option>
+        @endforeach
     </select>
 
     <select name="file_type" class="border px-3 py-1.5 rounded w-[140px]">
