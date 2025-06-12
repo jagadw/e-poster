@@ -26,6 +26,7 @@ class PosterSeeder extends Seeder
             $code = 'EP-' . str_pad($index, 4, '0', STR_PAD_LEFT);
 
             $filename = uniqid('poster_') . '.' . pathinfo($fileUrl, PATHINFO_EXTENSION);
+            $fileUrl = preg_replace('/\s/', '%20', $fileUrl);
             $content = file_get_contents($fileUrl);
             Storage::disk('public')->put("posters/{$filename}", $content);
 
