@@ -86,13 +86,12 @@
             </tbody>
         </table>
         {{ $posters->links() }}
+    </div>        
+    </div>
 
         <div id="keyboard-container" style="display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 1000; background: #fff; box-shadow: 0 -4px 10px rgba(0,0,0,0.2); padding: 10px;">
           <div class="simple-keyboard"></div>
         </div>
-
-    </div>        
-    </div>
 
     <div id="previewModal" class="fixed z-50 top-0 left-0 w-full h-full bg-black hidden">
       <div class="w-full h-full relative overflow-hidden" id="modalContent">
