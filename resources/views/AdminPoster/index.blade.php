@@ -4,6 +4,9 @@
     </x-slot>
 
     <div id="table-wrapper" class="table-container">
+    <div class="w-full flex justify-center mb-4">
+      <img src="{{ asset('images/kopapdi.png') }}" alt="Logo" class="h-32">
+    </div>
         <div class="py-4 px-6">
             <a href="{{ route('AdminPoster.create') }}" class="px-3 py-2 bg-[#36ab40] text-white rounded">Add Poster</a>
         </div>
@@ -110,13 +113,13 @@
             <!-- File Content Here -->
           </div>
       
-          <!-- Zoom Control -->
-          <div class="absolute top-4 right-4 z-50 flex flex-col gap-2">
+        <!-- Zoom Control -->
+        <div id="zoomControls" class="absolute">
             <button id="zoomIn" class="bg-white text-black px-3 py-1 rounded shadow">+</button>
             <button id="zoomOut" class="bg-white text-black px-3 py-1 rounded shadow">−</button>
             <button id="resetZoom" class="bg-white text-black px-3 py-1 rounded shadow">Reset</button>
             <button id="closeModal" class="bg-red-600 text-white px-3 py-1 rounded shadow">X</button>
-          </div>
+        </div>
         </div>
       </div>
   
