@@ -5,7 +5,7 @@
 
     <div id="table-wrapper" class="table-container">
     <div class="w-full flex justify-center mb-4">
-      <img src="{{ asset('images/kopapdi.png') }}" alt="Logo" class="h-32">
+      <img src="{{ asset('images/kopapdi.png') }}" alt="Logo" class="h-24">
     </div>
         <div class="py-4 px-6">
             <a href="{{ route('AdminPoster.create') }}" class="px-3 py-2 bg-[#36ab40] text-white rounded">Add Poster</a>
