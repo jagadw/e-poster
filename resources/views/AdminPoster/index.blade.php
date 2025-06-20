@@ -80,7 +80,7 @@
                         <td class="border px-2 py-1 text-center">{{ $poster->title }}</td>
                         <td class="border px-2 py-1 text-center">{{ $poster->type }}</td>
                         <td class="border px-2 py-1 text-center">
-                            <a href="#" 
+                            <a href="#" onclick="let msg=document.createElement('div'); msg.textContent='Please wait...'; msg.style.cssText='position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#facc15;color:#000;padding:10px 20px;border-radius:5px;box-shadow:0 2px 6px rgba(0,0,0,0.2);font-family:sans-serif;z-index:9999;'; document.body.appendChild(msg); setTimeout(()=>msg.remove(),3000); return false;"
                             class="bg-[#36ab40] text-white px-2 py-1 rounded open-modal"
                             data-file="{{ asset('storage/' . $poster->file) }}"
                             data-extension="{{ pathinfo($poster->file, PATHINFO_EXTENSION) }}">
