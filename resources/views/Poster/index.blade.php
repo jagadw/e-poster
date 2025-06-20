@@ -4,7 +4,7 @@
 
     <div id="table-wrapper" class="py-4 px-6 table-container">
     <div class="w-full flex justify-center mb-4">
-      <img src="{{ asset('images/kopapdi.png') }}" alt="Logo" class="h-24">
+      <img src="{{ asset('images/kopapdi.png') }}" alt="Logo" class="h-16">
     </div>
     <div class="pb-4">
         <a href="{{ route('/') }}" class="px-3 py-2 bg-[#6f7575] text-white rounded">Back</a>
