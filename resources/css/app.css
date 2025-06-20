@@ -66,3 +66,23 @@ nav {
 #modalContent:active {
   cursor: grabbing;
 }
+
+#zoomControls {
+  position: fixed;
+  top: 50%;
+  right: 16px;
+  transform: translateY(-50%);
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 1001;
+}
+
+@media (orientation: portrait) {
+  #zoomControls {
+    position: fixed;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
