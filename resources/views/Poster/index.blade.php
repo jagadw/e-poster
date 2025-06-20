@@ -3,7 +3,10 @@
 @section('content')
 
     <div id="table-wrapper" class="py-4 px-6 table-container">
-      <div class="pb-4">
+    <div class="w-full flex justify-center mb-4">
+      <img src="{{ asset('images/kopapdi.png') }}" alt="Logo" class="h-32">
+    </div>
+    <div class="pb-4">
         <a href="{{ route('/') }}" class="px-3 py-2 bg-[#6f7575] text-white rounded">Back</a>
     </div>
 
@@ -98,14 +101,13 @@
         <div id="zoomContainer" class="absolute top-0 left-0 origin-top-left transform">
           <!-- File Content Here -->
         </div>
-    
-        <!-- Zoom Control -->
-        <div class="absolute top-4 right-4 z-50 flex flex-col gap-2">
-          <button id="zoomIn" class="bg-white text-black px-3 py-1 rounded shadow">+</button>
-          <button id="zoomOut" class="bg-white text-black px-3 py-1 rounded shadow">−</button>
-          <button id="resetZoom" class="bg-white text-black px-3 py-1 rounded shadow">Reset</button>
-          <button id="closeModal" class="bg-red-600 text-white px-3 py-1 rounded shadow">X</button>
-        </div>
+
+      <div id="zoomControls">
+        <button id="zoomIn" class="bg-white text-black px-3 py-1 rounded shadow">+</button>
+        <button id="zoomOut" class="bg-white text-black px-3 py-1 rounded shadow">−</button>
+        <button id="resetZoom" class="bg-white text-black px-3 py-1 rounded shadow">Reset</button>
+        <button id="closeModal" class="bg-red-600 text-white px-3 py-1 rounded shadow">X</button>
+      </div>
       </div>
     </div>
 
