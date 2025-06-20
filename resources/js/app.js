@@ -131,3 +131,57 @@ document.getElementById("closeModal").addEventListener("click", () => {
             keyboardContainer.style.display = "none";
           }
         });
+
+        const zoomControls = document.getElementById('zoomControls');
+        const modal = document.getElementById('previewModal');
+        let controlsVisible = true;
+
+        // Fungsi toggle zoom controls
+        function toggleControls() {
+          if (controlsVisible) {
+            zoomControls.style.display = 'none';
+          } else {
+            zoomControls.style.display = 'flex';
+            autoHide();
+          }
+          controlsVisible = !controlsVisible;
+        }
+
+        // Auto-hide setelah beberapa detik
+        function autoHide() {
+          setTimeout(() => {
+            zoomControls.style.display = 'none';
+            controlsVisible = false;
+          }, 3000);
+        }
+
+        // Tampilkan saat pertama buka modal
+        window.addEventListener('load', () => {
+          zoomControls.style.display = 'flex';
+          controlsVisible = true;
+          autoHide();
+        });
+
+        // Double click yang aman, tidak mengganggu tombol
+        document.getElementById('previewModal').addEventListener('dblclick', (e) => {
+        const isButton = e.target.tagName === 'BUTTON' || e.target.closest('button');
+        if (isButton) return;
+        toggleControls();
+        });
+        
+        // Deteksi tap dua kali pada layar sentuh
+        let lastTap = 0;
+
+        document.getElementById('previewModal').addEventListener('touchend', (e) => {
+          const currentTime = new Date().getTime();
+          const tapLength = currentTime - lastTap;
+          const isButton = e.target.tagName === 'BUTTON' || e.target.closest('button');
+
+          if (!isButton && tapLength < 300 && tapLength > 0) {
+            // Deteksi tap dua kali
+            if (window.matchMedia("(orientation: portrait)").matches) {
+              toggleControls();
+            }
+          }
+          lastTap = currentTime;
+        });
