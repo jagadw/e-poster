@@ -162,26 +162,18 @@ document.getElementById("closeModal").addEventListener("click", () => {
           autoHide();
         });
 
-        // Double click yang aman, tidak mengganggu tombol
-        document.getElementById('previewModal').addEventListener('dblclick', (e) => {
-        const isButton = e.target.tagName === 'BUTTON' || e.target.closest('button');
-        if (isButton) return;
-        toggleControls();
-        });
-        
-        // Deteksi tap dua kali pada layar sentuh
-        let lastTap = 0;
-
-        document.getElementById('previewModal').addEventListener('touchend', (e) => {
-          const currentTime = new Date().getTime();
-          const tapLength = currentTime - lastTap;
+        // Klik/tap tunggal yang aman, tidak mengganggu tombol
+        document.getElementById('previewModal').addEventListener('click', (e) => {
           const isButton = e.target.tagName === 'BUTTON' || e.target.closest('button');
-
-          if (!isButton && tapLength < 300 && tapLength > 0) {
-            // Deteksi tap dua kali
-            if (window.matchMedia("(orientation: portrait)").matches) {
-              toggleControls();
-            }
+          if (!isButton) {
+            toggleControls();
           }
-          lastTap = currentTime;
+        });
+
+        // Untuk layar sentuh (opsional karena 'click' umumnya juga meng-cover tap)
+        document.getElementById('previewModal').addEventListener('touchend', (e) => {
+          const isButton = e.target.tagName === 'BUTTON' || e.target.closest('button');
+          if (!isButton && window.matchMedia("(orientation: portrait)").matches) {
+            toggleControls();
+          }
         });
