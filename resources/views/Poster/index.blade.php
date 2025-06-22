@@ -31,7 +31,7 @@
         placeholder="Search by Title"
         class="border px-3 py-1.5 rounded w-[160px]">
 
-    <button type="submit" class="bg-[#36ab40] text-white px-3 py-1.5 rounded">GO</button>
+    <button type="submit" class="bg-[#36ab40] text-white px-3 py-1.5 rounded">Search</button>
 
     <div class="flex-row gap-1">
     <select name="category" class="border px-3 py-1.5 rounded w-[140px] mb-2">
