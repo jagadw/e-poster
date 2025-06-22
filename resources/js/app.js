@@ -177,3 +177,36 @@ document.getElementById("closeModal").addEventListener("click", () => {
             toggleControls();
           }
         });
+
+                  
+        document.addEventListener('DOMContentLoaded', function () {
+          const overlay = document.getElementById('idleOverlay');
+          let isIdle = false;
+          let timer;
+
+          function showOverlay() {
+            overlay.style.display = 'flex';
+            isIdle = true;
+          }
+
+          function hideOverlay() {
+            if (isIdle) {
+              overlay.style.display = 'none';
+              isIdle = false;
+            }
+          }
+
+          function resetTimer() {
+            clearTimeout(timer);
+            hideOverlay();
+            timer = setTimeout(showOverlay, 3000);
+          }
+
+          resetTimer(); // trigger awal setelah halaman siap
+
+          ['mousemove', 'keydown', 'scroll', 'click', 'touchstart'].forEach(evt => {
+            document.addEventListener(evt, resetTimer);
+          });
+
+          overlay.addEventListener('click', resetTimer);
+        });

@@ -111,6 +111,10 @@
       </div>
     </div>
 
+        <div id="idleOverlay" style="display: none; position: fixed; z-index: 99999; top: 0; left: 0; width: 100vw; height: 100vh; background-color: white; justify-content: center; align-items: center;">
+        <img src="{{ asset('images/kopapdi.png') }}" alt="Idle Logo" style="max-width: 100vw; max-height: 100vh; object-fit: contain;">
+        </div>
+
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
         <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
 @endsection
