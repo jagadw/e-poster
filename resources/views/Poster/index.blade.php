@@ -102,7 +102,7 @@
           <!-- File Content Here -->
         </div>
 
-      <div id="zoomControls">
+      <div id="zoomControls" class="absolute">
         <button id="zoomIn" class="bg-white text-black px-3 py-1 rounded border border-gray-400">+</button>
         <button id="zoomOut" class="bg-white text-black px-3 py-1 rounded border border-gray-400">−</button>
         <button id="resetZoom" class="bg-white text-black px-3 py-1 rounded border border-gray-400">Reset</button>
