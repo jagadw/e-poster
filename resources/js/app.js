@@ -199,7 +199,7 @@ document.getElementById("closeModal").addEventListener("click", () => {
           function resetTimer() {
             clearTimeout(timer);
             hideOverlay();
-            timer = setTimeout(showOverlay, 3000);
+            timer = setTimeout(showOverlay, 5 * 60 * 1000);
           }
 
           resetTimer(); // trigger awal setelah halaman siap
