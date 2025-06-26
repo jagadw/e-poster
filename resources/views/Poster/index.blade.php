@@ -115,10 +115,9 @@
       </div>
     </div>
 
-    <div id="idleOverlay" style="display: none; position: fixed; z-index: 99999; top: 0; left: 0; width: 100vw; height: 100vh; background-color: white; justify-content: center; align-items: center; flex-direction: column;">
-    <img src="{{ asset('images/kopapdi.png') }}" alt="Idle Logo" style="max-width: 100vw; max-height: 50%; object-fit: contain;">
-    <p style="margin-top: 20px; font-size: 4em; text-align: center;">Touch to start</p>
-    </div>
+        <div id="idleOverlay" style="display: none; position: fixed; z-index: 99999; top: 0; left: 0; width: 100vw; height: 100vh; background-color: white; justify-content: center; align-items: center;">
+        <img src="{{ asset('images/kopapdi.png') }}" alt="Idle Logo" style="max-width: 100vw; max-height: 50%; object-fit: contain;">
+        </div>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
         <script src="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/index.js"></script>
