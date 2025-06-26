@@ -112,7 +112,7 @@ document.getElementById("closeModal").addEventListener("click", () => {
           }
         });
       
-        const keyboardContainer = document.getElementById("keyboard-container");
+        // const keyboardContainer = document.getElementById("keyboard-container");
       
         // Input fields
         const inputs = document.querySelectorAll(".input");
@@ -137,29 +137,29 @@ document.getElementById("closeModal").addEventListener("click", () => {
         let controlsVisible = true;
 
         // Fungsi toggle zoom controls
-        function toggleControls() {
-          if (controlsVisible) {
-            zoomControls.style.display = 'none';
-          } else {
-            zoomControls.style.display = 'flex';
-            autoHide();
-          }
-          controlsVisible = !controlsVisible;
-        }
+        // function toggleControls() {
+        //   if (controlsVisible) {
+        //     zoomControls.style.display = 'none';
+        //   } else {
+        //     zoomControls.style.display = 'flex';
+        //     autoHide();
+        //   }
+        //   controlsVisible = !controlsVisible;
+        // }
 
         // Auto-hide setelah beberapa detik
-        function autoHide() {
-          setTimeout(() => {
-            zoomControls.style.display = 'none';
-            controlsVisible = false;
-          }, 3000);
-        }
+        // function autoHide() {
+        //   setTimeout(() => {
+        //     zoomControls.style.display = 'none';
+        //     controlsVisible = false;
+        //   }, 3000);
+        // }
 
         // Tampilkan saat pertama buka modal
         window.addEventListener('load', () => {
           zoomControls.style.display = 'flex';
           controlsVisible = true;
-          autoHide();
+          // autoHide();
         });
 
         // Klik/tap tunggal yang aman, tidak mengganggu tombol
@@ -199,7 +199,7 @@ document.getElementById("closeModal").addEventListener("click", () => {
           function resetTimer() {
             clearTimeout(timer);
             hideOverlay();
-            timer = setTimeout(showOverlay, 5 * 60 * 1000);
+            timer = setTimeout(showOverlay, 3000);
           }
 
           resetTimer(); // trigger awal setelah halaman siap
