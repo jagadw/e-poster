@@ -103,10 +103,10 @@
         </div>
 
       <div id="zoomControls">
-        <button id="zoomIn" class="bg-white text-black px-3 py-1 rounded shadow">+</button>
-        <button id="zoomOut" class="bg-white text-black px-3 py-1 rounded shadow">−</button>
-        <button id="resetZoom" class="bg-white text-black px-3 py-1 rounded shadow">Reset</button>
-        <button id="closeModal" class="bg-red-600 text-white px-3 py-1 rounded shadow">X</button>
+        <button id="zoomIn" class="bg-white text-black px-3 py-1 rounded border border-gray-400">+</button>
+        <button id="zoomOut" class="bg-white text-black px-3 py-1 rounded border border-gray-400">−</button>
+        <button id="resetZoom" class="bg-white text-black px-3 py-1 rounded border border-gray-400">Reset</button>
+        <button id="closeModal" class="bg-red-600 text-white px-3 py-1 rounded border border-gray-400">X</button>
       </div>
       </div>
     </div>
