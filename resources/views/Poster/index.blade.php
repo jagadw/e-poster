@@ -8,6 +8,12 @@
     </div>
     <div class="pb-4">
         <a href="{{ route('/') }}" class="px-3 py-2 bg-[#6f7575] text-white rounded">Back</a>
+
+    <a href="{{ route('home') }}"
+        class="bg-[#36ab40] text-white px-3 py-1.5 rounded">
+        SHOW ALL POSTERS
+    </a>
+
     </div>
 
     <form id="formSearch" method="GET" action="{{ route('home') }}"
@@ -25,7 +31,10 @@
         placeholder="Search by Title"
         class="border px-3 py-1.5 rounded w-[160px]">
 
-    <select name="category" class="border px-3 py-1.5 rounded w-[140px]">
+    <button type="submit" class="bg-[#36ab40] text-white px-3 py-1.5 rounded">Search</button>
+
+    <div class="flex-row gap-1">
+    <select name="category" class="border px-3 py-1.5 rounded w-[140px] mb-2">
         <option value="">All Category</option>
         @foreach($types as $type)
             <option value="{{ $type }}" {{ request('category') == $type ? 'selected' : '' }}>
@@ -42,14 +51,9 @@
         <option value="docx" {{ request('file_type') == 'docx' ? 'selected' : '' }}>DOCX</option>
         <option value="pptx" {{ request('file_type') == 'pptx' ? 'selected' : '' }}>PPTX</option>
         <option value="pdf" {{ request('file_type') == 'pdf' ? 'selected' : '' }}>PDF</option>
-</select>
+    </select>
+</div>
 
-    <button type="submit" class="bg-[#36ab40] text-white px-3 py-1.5 rounded">GO</button>
-
-    <a href="{{ route('home') }}"
-        class="bg-[#36ab40] text-white px-3 py-1.5 rounded">
-        SHOW ALL POSTERS
-    </a>
 </form>
 
       <div class="relative overflow-x-auto">
@@ -111,8 +115,9 @@
       </div>
     </div>
 
-        <div id="idleOverlay" style="display: none; position: fixed; z-index: 99999; top: 0; left: 0; width: 100vw; height: 100vh; background-color: white; justify-content: center; align-items: center;">
+        <div id="idleOverlay" style="display: none; position: fixed; z-index: 99999; top: 0; left: 0; width: 100vw; height: 100vh; background-color: white; justify-content: center; align-items: center; flex-direction: column;">
         <img src="{{ asset('images/kopapdi.png') }}" alt="Idle Logo" style="max-width: 100vw; max-height: 50%; object-fit: contain;">
+        <p style="margin-top: 20px; font-size: 1.2em; text-align: center;">Touch to start</p>
         </div>
 
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-keyboard@latest/build/css/index.css">
